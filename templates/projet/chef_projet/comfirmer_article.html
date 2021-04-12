@@ -1,0 +1,21 @@
+{% extends 'mainChefProjet.html'%}
+{% block contenu %}
+<div class="row">
+            <h5>Ajouter un article </h5>
+            <hr>
+           <div style="height: 100vh;">
+               {% if test == True %}
+                <div class="alert alert-success" role="alert">
+                 <h4 class="alert-heading" >Bien fait!</h4>
+                 <p>Ajouté avec succès .</p>
+                 <a type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></a>
+                </div>
+               {% endif %}
+               {% if test == False %}
+              <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  <strong>Ops!</strong> Vous devriez vérifier le stock de ce produit.
+              </div>
+              {% endif %}
+           </div>
+</div>
+{% endblock %}

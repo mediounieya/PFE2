@@ -1,0 +1,69 @@
+{% extends 'mainChefProjet.html'%}
+{% load widget_tweaks %}
+{% block contenu %}
+<h2>Nouvelle tâche</h2>
+</hr>
+<div class="mb-3" style="margin-left:20%;padding:50px;margin-top:20px;margin-bottom:100px; width: 700px;background:rgba(255,255,255, 0.6);">
+        <form action="" method="POST"  novalidate>
+            {%  csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="field">
+            <label class="label">Titre de tâche</label>
+            <div class="control">
+                {{form.titre_tache}}
+                 <div>
+                {% for error in form.titre_tache.errors %}
+                        <div class="alert alert-danger" role="alert">
+                        <p class="help is-danger">{{ error }}</p>
+                        </div>
+                {% endfor %}
+          </div>
+            </div>
+          </div>
+
+           <div class="field">
+            <label class="label">description de tâche</label>
+            <div>
+                {{ field.errors }}
+                {% render_field field style="border: 2px dashed red;" placeholder=field.name %}
+                 {{ field.help_text }}
+                {{form.description_tache}}
+            </div>
+          </div>
+
+            <div class="field">
+            <label class="label">mots clés</label>
+            <div class="control">
+                {{form.mots_clés}}
+            </div>
+          </div>
+
+
+             <div class="field">
+            <label class="label">Démarche de realisation</label>
+            <div class="control">
+            </div>
+                {{form.demarche_tache}}
+          </div>
+
+             <div class="field">
+            <label class="label">les Difficultés de tâche</label>
+            <div class="control">
+                {{form.difficulté_tache}}
+            </div>
+          </div>
+
+            <div class="field">
+            <label class="label">Nom de projet</label>
+            <div class="control">
+            <select class="form-control" name="projet" id="form.projet">
+                <option value="{{projet.id}}" selected >{{projet.nom_projet}}</option>
+            </select>
+            </div>
+          </div>
+
+            <input class="btn btn-danger" type="submit" name="Valider" style="margin-left:40%">
+            <a class="btn btn-warning" href="{% url 'detaille_projet' pk=chef_projet.id proj=projet.id %}">Annuler</a>
+        </form>
+</div>
+{% endblock %}

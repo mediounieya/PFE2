@@ -1,0 +1,57 @@
+{% extends 'mainChefProjet.html'%}
+{% block contenu %}
+{% load static %}
+{% load widget_tweaks %}
+
+<h2>Nouvelle Réclamation</h2>
+</hr>
+<div class="mb-3" style="margin-left:20%;padding:50px;margin-top:20px;margin-bottom:100px; width: 700px;background:rgba(255,255,255, 0.6);">
+    <form action="" method="POST" >
+            {%  csrf_token %}
+        <div class="field">
+            <label class="label">objet</label>
+            <div>
+                {{form.objet}}
+            </div>
+          </div>
+
+           <div class="field">
+            <label class="label">description_reclamation</label>
+            <div>
+                {{form.description_reclamation}}
+            </div>
+          </div>
+           <div class="field">
+            <label class="label">date_traitement</label>
+            <div>
+                {% render_field form.date_traitement type="date"  class="datepicker"%}
+            </div>
+          </div>
+
+             <div class="field">
+            <label class="label">date_solution</label>
+            <div class="control">
+            </div>
+              {% render_field form.date_solution type="date"  class="datepicker"%}
+          </div>
+
+             <div class="field">
+            <label class="label">Statut</label>
+            <div class="control">
+                {{form.statut}}
+            </div>
+          </div>
+
+            <div class="field">
+            <label class="label">Nom d'utilisateur</label>
+            <div class="control">
+            <select class="form-control" name="utilisateur" id="form.utilisateur">
+                <option value="{{chef_projet.id}}" selected >{{chef_projet.nom}}</option>
+            </select>
+            </div>
+          </div>
+         <input class="btn btn-danger" type="submit" name="Valider" style="margin-left:40%">
+          <a class="btn btn-warning" href="{% url 'acceuil_Chef' pk=chef_projet.id  %}">Annuler</a>
+    </form>
+</div>
+{% endblock %}

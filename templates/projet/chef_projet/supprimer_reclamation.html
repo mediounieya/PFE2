@@ -1,0 +1,15 @@
+{% extends 'mainChefProjet.html'%}
+{% block contenu %}
+<div class="row">
+<div class="col-md-6">
+    <div class="card card-body">
+        <p>Voulez-vous supprimer la reclamation ?</p>
+        <form action="{% url 'supprimer_reclamation' reclamations=item.id pk=chef_projet.id  %}" method="POST">
+          {% csrf_token %}
+             <a class="btn btn-warning" href="{% url 'list_reclamation_chef' pk=chef_projet.id %}">Annuler</a>
+             <input class="btn btn-danger" type="submit" name="Confirmer">
+        </form>
+    </div>
+</div>
+    </div>
+{% endblock %}

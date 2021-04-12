@@ -1,0 +1,34 @@
+{% extends 'mainChefProjet.html'%}
+{% block contenu %}
+ <h2>{{projet.nom_projet}}</h2>
+</hr>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+             <h5>Liste des tâches</h5>
+             <th><a class='btn btn-sm btn-success' href="{% url 'ajout_tache' pk=chef_projet.id proj=projet.id %}"><i class="fas fa-plus">Nouvelle tâche</i></a></th>
+             <hr>
+            <div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Titre de tâche</th>
+                    <th>Description</th>
+                    <th>Difficulté</th>
+                    <th>Mots_clés</th>
+                     <th>Demarche</th>
+				 </tr>
+                {% for tache in tache %}
+                <tr>
+					<th>{{tache.titre_tache}}</th>
+                    <th>{{tache.description_tache}}</th>
+                    <th>{{tache.mots_clés}}</th>
+                    <th>{{tache.difficulté_tache}}</th>
+                    <th>{{tache.demarche_tache}}</th>
+				 </tr>
+                {% endfor %}
+			</table>
+            </div>
+		</div>
+	</div>
+</div>
+{% endblock %}

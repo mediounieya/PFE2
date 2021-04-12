@@ -1,0 +1,53 @@
+{% extends 'mainChefProjet.html'%}
+{% block contenu %}
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+             <h5>Liste de mes projets </h5>
+             <hr>
+            <div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>code projet</th>
+                    <th>Nom projet</th>
+                    <th>Date d'ajout</th>
+                     <th>Etat projet</th>
+                     <th>Ajouter un aticle</th>
+                      <th>clôturer</th>
+                     <th>Détailler</th>
+
+				 </tr>
+                     {% for projet in projet %}
+                    <tr>
+                    <th>{{projet.id}}</th>
+                    <th>{{projet.nom_projet}}</th>
+                    <th>{{projet.date_ajout_projet}}</th>
+                    <th>{{projet.etat_projet}}</th>
+                    <th>
+                        {% if projet.etat_projet != "terminé" %}
+                          <a class='btn btn-sm btn-info' href="{% url 'ajouter_article' pk=chef_projet.id proj=projet.id %}" >Ajouter un article</a>
+                        {% else %}
+                          <a class='btn btn-sm btn-info disabled' href="{% url 'ajouter_article' pk=chef_projet.id proj=projet.id  %}" >Ajouter un article</a>
+                        {% endif %}
+                    </th>
+                     <th>
+                         {% if projet.etat_projet != "terminé" %}
+                         <a class='btn btn-sm btn-warning disabled' href="{% url 'pdf' projet.id %}">clôturer</a>
+                        {% else %}
+                        <a class='btn btn-sm btn-warning' href="{% url 'pdf' projet.id %}">clôturer</a>
+                         {% endif %}
+                     </th>
+                  	<th>
+                        {% if projet.etat_projet == "terminé" %}
+                         <a class='btn btn-sm btn-success disabled' href="{% url 'detaille_projet' pk=chef_projet.id proj=projet.id %}">Détailler</a>
+                        {% else %}
+                        <a class='btn btn-sm btn-success' href="{% url 'detaille_projet' pk=chef_projet.id proj=projet.id %}">Détailler</a>
+                         {% endif %}
+                    </tr>
+                     {% endfor %}
+			</table>
+            </div>
+		</div>
+	</div>
+</div>
+{% endblock %}

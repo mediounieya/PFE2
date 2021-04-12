@@ -1,0 +1,26 @@
+{% extends 'mainChefProjet.html'%}
+{% block contenu %}
+<div class="row">
+    <div class="class=col-xs-9">
+        <div class="card card-body">
+            <h5>Ajouter un article </h5>
+            <hr>
+           <div style="height: 100vh;">
+                <div style="height: 400px; display: block; margin: 100px auto; width: 400px;">
+                <form action="{% url 'comfirmer_article' pk=chef_projet.id proj=projet.id arti=art.code_article %}" method="POST">
+                    {% csrf_token %}
+                    <h3 style="text-align: center; margin: 50px 0;">{{art.code_article}}</h3>
+                    <div class="form-floating mb-3">
+                        <input type="number" class="form-control" id="floatingInput" name="number" min=1 value="1">
+                        <label for="floatingInput">Combien?</label>
+                    </div>
+                    <button style="display: block; margin: 50px auto;" class="btn btn-sm btn-primary">Comfirmer</button>
+                </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+ 
+</div>
+{% endblock %}

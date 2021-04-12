@@ -1,0 +1,36 @@
+{% extends 'main.html'%}
+{% block contenu %}
+<div class="row">
+    <div class="class=col-xs-9">
+		<div class="card card-body">
+             <h5>Liste des projets </h5>
+            <hr>
+             <div class="card card-body">
+                 <a class="btn btn-primary btn-sm btn-block" href="{% url 'ajout_projet' pk=responsable.id %}">Ajouter un Projet</a>
+                 <table class="table table-sm">
+                     <tr>
+                    <th>code projet</th>
+                    <th>Nom projet</th>
+                    <th>Date d'ajout</th>
+                     <th>chef de projet</th>
+                     <th>Mise à jour</th>
+                     <th>Supprimer</th>
+
+                     </tr>
+                     {% for projet in projets %}
+                    <tr>
+                    <th>{{projet.id}}</th>
+                    <th>{{projet.nom_projet}}</th>
+                    <th>{{projet.date_ajout_projet}}</th>
+                    <th>{{projet.chef_projet}}</th>
+                     <th><a class='btn btn-sm btn-info' href="{% url 'modifier_projet' proj=projet.id  pk=responsable.id  %}">Mise à jour</a></th>
+                    <th><a class='btn btn-sm btn-danger' href="{% url 'supprimer_projet' proj=projet.id  pk=responsable.id  %}">Supprimer</a></th>
+                    </tr>
+                     {% endfor %}
+                 </table>
+              </div>
+            </div>
+        </div>
+
+</div>
+{% endblock %}

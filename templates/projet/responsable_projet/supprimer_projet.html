@@ -1,0 +1,15 @@
+{% extends 'main.html'%}
+{% block contenu %}
+<div class="row">
+<div class="col-md-6">
+    <div class="card card-body">
+        <p>Voulez-vous supprimer le projet ?</p>
+        <form action="{% url 'supprimer_projet' proj=item.id pk=responsable.id  %}" method="POST">
+          {% csrf_token %}
+             <a class="btn btn-warning" href="{% url 'liste_Projet' pk=responsable.id %}">Annuler</a>
+             <input class="btn btn-danger" type="submit" name="Confirmer">
+        </form>
+    </div>
+</div>
+    </div>
+{% endblock %}

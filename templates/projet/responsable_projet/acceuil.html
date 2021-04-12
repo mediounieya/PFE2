@@ -1,0 +1,19 @@
+{% extends 'main.html'%}
+{% block contenu %}
+<div class="row">
+        <div class="col-md">
+		<div class="card card-body">
+			<h5>Total des projets</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{projets_total}} Projets</h1>
+		</div>
+	    </div>
+       <div class="col-md">
+		<div class="card card-body">
+			<h5>Total des chefs</h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{chefs_total}} Chefs</h1>
+		</div>
+	    </div>
+</div>
+{% endblock %}

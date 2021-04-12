@@ -1,0 +1,21 @@
+{% extends 'mainChefProjet.html'%}
+{% block contenu %}
+
+<div class="row">
+    <div class="col-md">
+		<div class="card card-body">
+			<h5>Informations</h5>
+			<hr>
+			<p>Nom: {{chef_projet.nom}}</p>
+			<p>Telephone: {{chef_projet.telephone}} </p>
+		</div>
+	</div>
+	<div class="col-md">
+		<div class="card card-body">
+			<h5>Total des projets </h5>
+			<hr>
+			<h1 style="text-align: center;padding: 10px">{{projet_total}} Projets</h1>
+		</div>
+	</div>
+</div>
+{% endblock %}

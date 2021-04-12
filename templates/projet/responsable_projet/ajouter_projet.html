@@ -1,0 +1,107 @@
+{% extends 'main.html'%}
+{% load widget_tweaks %}
+{% block contenu %}
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light  bg-light" style="margin-top:50px ;">
+  <div class="container-fluid">
+    <h2>Ajouter un projet</h2>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent" style="margin-left:50%">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+          <a class="nav-link" href="#">Information de projet</a>
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="#">Détailles de projet</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+<div class="mb-3" style="margin-left:20%;padding:50px;margin-top:20px;margin-bottom:100px; width: 700px;background:rgba(255,255,255, 0.6);">
+        <form action="" method="POST" >
+            {%  csrf_token %}
+            <div class="field">
+            <label class="label">Nom de projet</label>
+            <div class="control">
+              {% render_field form.nom_projet class="input" placeholder="Your name" class="form-control" %}
+            </div>
+          </div>
+
+           <div class="field">
+            <label class="label">description de projet</label>
+            <div>
+              {% render_field form.description_projet|attr:'required:false' class="input" placeholder="Description de projet" class+="textarea" rows="3"  %}
+            </div>
+          </div>
+
+            <div class="field">
+            <label class="label">Adresse projet</label>
+            <div class="control">
+              {% render_field form.adresse_projet class="input" placeholder="lieu de projet" %}
+            </div>
+          </div>
+
+
+             <div class="field">
+            <label class="label">Cout d'un projet</label>
+            <div class="control">
+                {% render_field form.cout_projet class="input" min="0" %} DT
+            </div>
+          </div>
+
+             <div class="field">
+            <label class="label">delai d'un projet</label>
+            <div class="control">
+              {% render_field form.delai_projet class="input" min="0"%} Mois
+            </div>
+          </div>
+
+            <div class="field">
+            <label class="label">date debut d'un projet</label>
+            <div class="control">
+              {% render_field form.date_debut type="date"  class="datepicker"%}
+            </div>
+          </div>
+
+
+            <div class="field">
+            <label class="label">date fin d'un projet</label>
+            <div class="control">
+              {% render_field form.date_fin type="date"  class="datepicker"%}
+            </div>
+          </div>
+              <div>
+                {% for error in form.non_field_errors %}
+                        <div class="alert alert-warning" role="alert">
+                        <p class="help is-danger">{{ error }}</p>
+                        </div>
+                    {% endfor %}
+          </div>
+
+        <div class="field">
+            <label class="label">caracteristique de projet</label>
+            <div class="control">
+              {% render_field form.caracteristique_projet class="input" placeholder="les caracteristiques de projet" class+="textarea" %}
+            </div>
+          </div>
+
+        <div class="field">
+            <label class="label">chef de projet</label>
+            <div class="control">
+              {% render_field form.chef_projet %}
+            </div>
+          </div>
+
+            <div class="field">
+            <label class="label">Etat de projet</label>
+            <div class="control">
+              {% render_field form.etat_projet %}
+            </div>
+          </div>
+
+            <input class="btn btn-danger" type="submit" name="Valider" style="margin-left:40%">
+            <a class="btn btn-warning" href="{% url 'liste_Projet' pk=responsable.id %}">Annuler</a>
+        </form>
+</div>
+{% endblock %}

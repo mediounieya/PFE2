@@ -1,0 +1,46 @@
+{% extends 'mainChefProjet.html'%}
+{% load static %}
+{% load widget_tweaks %}
+{% block contenu %}
+<div>
+    <nav class="navbar navbar-expand-lg navbar-light  bg-light" style="margin-top:50px ;">
+        <div class="container-fluid">
+            <h2>Ajouter un article</h2>
+            
+        </div>
+    </nav>
+</div>
+<div class="containerr">
+{% for art in article %}
+    <div class="cardd">
+        <div class="front">
+            <img src="{{ art.image.url }}"
+                alt="">
+        </div>
+        <div class="back">
+            <div class="back-content">
+                <h2>{{art.code_article}}</h2>
+                <span>{{art.cat_article}}</span>
+                <div class="sm">
+                    <div>{{art.desc_article}}</div>
+                    
+                </div>
+                <form action="{% url 'ajouter_article2' pk=chef_projet.id proj=projet.id arti=art.code_article %}" method="POST">
+                    {% csrf_token %}
+                {% if art.dispo_article < 0 %}
+                <button class="btnn" type="submit" disabled>Add</button>
+                {% endif%}
+                {% if art.dispo_article > 0  %}
+                <button class="btnn btnn1" type="submit" >Add</button>
+                {% endif%}
+                </form>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+        <input class="btn btn-danger" type="submit" name="Envoyer" style="margin-left:40%">
+        <a class="btn btn-warning" href="{% url 'chef_projet' pk=chef_projet.id %}">Annuler</a>
+    
+</div>
+{% endblock %}
